@@ -120,4 +120,4 @@ function check_numbers() {
 
     // 다음 숫자 입력을 위한 초기화
     reset();
-}
+} 
