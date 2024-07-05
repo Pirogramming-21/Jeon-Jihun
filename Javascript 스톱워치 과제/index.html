@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stopwatch</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="container-title">
+        <i class="fi fi-sr-alarm-clock"></i>
+        <h1>피로그래밍 스탑워치</h1>
+      </div>
+      <div class="stopwatch">
+        <p class="stopwatch-time">
+            <span id="seconds">00</span>
+            :
+            <span id="centiseconds">00</span>
+        </p>
+        <div class="buttons">
+            <button type="button" id="start">start</button>
+            <button type="button" id="stop">stop</button>
+            <button type="button" id="reset">reset</button>
+        </div>
+      </div>
+      <div class="record">
+        <div class="record-title">
+            <button class = "select-circle entire-selection"><i class="fi fi-rr-circle"></i></button>
+            <h2>구간기록</h2>
+            <button class="trash-btn"><i class="fi fi-rr-trash"></i></button>
+        </div>
+        <div class="record-list">
+            <!-- 
+            <div class="record-info">
+                <button class = "select-circle one-selection"><i class="fi fi-rr-circle"></i></button>
+                <p></p>
+                <p></p>
+            </div>
+            -->
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="main.js"></script>
+</html>
