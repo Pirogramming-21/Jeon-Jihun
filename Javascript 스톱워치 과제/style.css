@@ -126,14 +126,14 @@ body {
 }
 
 
-.trash-btn {
+#trash-btn {
   font-size: 30px;
   background-color: transparent;
   border: none;
   cursor: pointer;
 }
 
-.trash-btn:active {
+#trash-btn:active {
     background-color: rgb(220, 143, 143);
     border-radius: 7px;
 }

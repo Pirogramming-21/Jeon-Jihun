@@ -6,7 +6,12 @@ let buttonStart = document.getElementById('start');
 let buttonStop = document.getElementById('stop');
 let buttonReset = document.getElementById('reset');
 let interval;  // 1/100 초씩 자동실행되는 곳에 사용할 변수
- 
+
+
+const recordList = document.querySelector('.record-list');
+const Del_btn = document.getElementById('trash-btn');
+const All_btn = document.getElementById('check_btn');
+
 // 시작버튼 누를시 실행함수
 buttonStart.onclick = function() {
   if(buttonStart.disabled == false) {     // start버튼이 활성화 되었다면(여러번 실행되는 것 방지)
@@ -15,6 +20,7 @@ buttonStart.onclick = function() {
   }
 }
  
+
 // 정지버튼을 누를시 실행함수
 buttonStop.onclick = function() {
     clearInterval(interval); // 1/100초마다 실행되는 함수 멈춤
@@ -24,11 +30,10 @@ buttonStop.onclick = function() {
     const divRecord = document.createElement('li');
     divRecord.className = 'record-info';
 
-    const recordList = document.querySelector('.record-list');
     let recordID = recordList.children.length;
 
     divRecord.innerHTML = `
-        <div>
+        <div class = "li_check">
             <input type = "checkbox" id = "check_${recordID}" class = "btn" />
             <label for="check_${recordID}"><span></span></label>
         </div>
@@ -63,3 +68,32 @@ function startTimer() { // 1초, 2초......시간 계산하는 함수
     spanCentiseconds.innerText = '00';
   }
 }
+
+// 전체 선택 기능
+All_btn.addEventListener('click', () => {
+    if (All_btn.checked) {
+        const lists = recordList.querySelectorAll('li');
+        lists.forEach(list => {
+            const Chk_btn = list.querySelector('input[type="checkbox"]');
+            Chk_btn.checked = All_btn.checked;
+        });
+
+    } else {
+        const lists = recordList.querySelectorAll('li');
+        lists.forEach(list => {
+            const Chk_btn = list.querySelector('input[type="checkbox"]');
+            Chk_btn.checked = All_btn.checked;
+        });
+    }
+});
+
+// 삭제 기능
+Del_btn.addEventListener('click', () => {
+    const lists = recordList.querySelectorAll('li');
+    lists.forEach(list => {
+        const Chk_btn = list.querySelector('input[type="checkbox"]');
+        if (Chk_btn.checked) {
+            list.remove();
+        }
+    });
+});
