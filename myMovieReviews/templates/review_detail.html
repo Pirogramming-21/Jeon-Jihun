@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>상세 화면</title>
+  </head>
+  <body>
+    <h2>제목 : {{review.title}}</h2>
+    <p>개봉 연도 : {{review.year}}년</p>
+    <p>장르 : {{review.genre}}</p>
+    <p>별점 : {{review.star}}점</p>
+    <p>감독 : {{review.director}}</p>
+    <p>주연 배우 : {{review.actor}}</p>
+    <p>러닝 타임 : {{review.running}}분</p>
+    <div>{{review.review}}</div>
+
+    <div>수정하기 : <a href="/reviews/{{review.id}}/update">수정</a></div>
+    <form action="/reviews/{{review.id}}/delete" method="post">
+        {% csrf_token %}
+        삭제하기: <input type="submit" value="삭제하기">
+    </form>
+    <div>홈 화면 : <a href="/reviews">my Movie reviews</a></div>
+  </body>
+</html>
