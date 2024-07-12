@@ -13,7 +13,11 @@
     <p>별점 : {{review.star}}점</p>
     <p>감독 : {{review.director}}</p>
     <p>주연 배우 : {{review.actor}}</p>
-    <p>러닝 타임 : {{review.running}}분</p>
+    {% if review.running_time_hours > 0 %}
+      <p>러닝 타임 : {{review.running_time_hours}}시간 {{review.running_time_mins}}분</p>
+    {% else %}
+      <p>러닝 타임 : {{review.running_time_mins}}분</p>
+    {% endif %}
     <div>{{review.review}}</div>
 
     <div>수정하기 : <a href="/reviews/{{review.id}}/update">수정</a></div>

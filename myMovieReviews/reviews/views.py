@@ -11,6 +11,7 @@ def review_list(request):
     return render(request, 'review_list.html', content)
 
 def review_create(request):
+    genre_choices = Review.genre_choices
     if request.method == 'POST':
         title = request.POST["title"]
         year = request.POST["year"]
@@ -24,18 +25,21 @@ def review_create(request):
         Review.objects.create(title=title, year=year, actor=actor, genre=genre, star=star, review=review, director=director, running=running)
         return redirect("/reviews")
 
-    context = {}
+    context = {"genre_choices": genre_choices}
 
     return render(request, "review_create.html", context=context)
 
 def review_detail(request,id):
     review = Review.objects.get(id=id)
+    review.running_time_hours = review.running // 60
+    review.running_time_mins = review.running % 60
     context = {
         "review":review
     }
     return render(request, "review_detail.html", context=context)
 
 def review_update(request, id):
+    review = Review.objects.get(id=id)
     if request.method == "POST":
         title = request.POST["title"]
         year = request.POST["year"]
@@ -49,7 +53,6 @@ def review_update(request, id):
         Review.objects.filter(id=id).update(title=title, year=year, actor=actor, genre=genre, star=star, review=review, director=director, running=running)
         return redirect(f"/reviews/{id}")
     
-    review = Review.objects.get(id=id)
     context = {
         "review":review
     }

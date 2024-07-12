@@ -14,7 +14,11 @@
       </h2>
       <p>
         <input type="number" name="year" placeholder="개봉 연도" value="{{review.year}}"/>
-        <input type="text" name="genre" placeholder="장르" value="{{review.genre}}"/>
+        <select name="genre" aria-placeholder="장르">
+          {% for k,v in review.genre_choices %}
+            <option value="{{k}}">{{v}}</option>
+          {% endfor %}
+        </select>
         <input type="number" step="0.01" name="star" placeholder="별점" value="{{review.star}}"/>
       </p>
       <p>
