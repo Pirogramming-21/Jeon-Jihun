@@ -4,9 +4,18 @@ from .models import Review
 # Create your views here.
 
 def review_list(request):
-    reviews = Review.objects.all()
+    sort = request.GET.get('sort','-created_at')
+    if sort == 'title':
+        reviews = Review.objects.order_by('title','-created_at')
+    elif sort == 'star':
+        reviews = Review.objects.order_by('-star','-created_at')
+    elif sort == 'running':
+        reviews = Review.objects.order_by('running','-created_at')
+    else:
+        reviews = Review.objects.order_by('-created_at')
     content = {
         'reviews':reviews,
+        'sort':sort
     }
     return render(request, 'review_list.html', content)
 

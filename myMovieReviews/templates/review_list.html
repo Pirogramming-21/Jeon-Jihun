@@ -7,6 +7,18 @@
     <title>홈 화면</title>
   </head>
   <body>
+    <div>
+      <form action="/reviews" method="get">
+        <input type="hidden" id="sort" name="sort" value="{{sort}}">
+        <select name="sort">
+          <option value="recent">최신순</option>
+          <option value="title" {% if sort == 'title' %}selected{% endif %}>제목이름순</option>
+          <option value="star" {% if sort == 'star' %}selected{% endif %}>별점순</option>
+          <option value="running" {% if sort == 'running' %}selected{% endif %}>상영시간순</option>
+        </select>
+        <button class="btn btn-primary" type="submit" value="save">정렬</button>
+      
+    </div>
     {% for review in reviews %}
     <div>
       <h1><a href="/reviews/{{review.id}}">{{review.title}}</a></h1>
