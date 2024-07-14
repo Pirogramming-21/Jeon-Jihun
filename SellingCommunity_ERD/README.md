@@ -3,7 +3,7 @@
 
 ## ERD 사진
 <p align="center">
-  <img src="![SellingCommunity_ERD](https://github.com/user-attachments/assets/679b77f9-9125-4ae2-8fc1-7228a6373573)">
+  <img src="https://github.com/user-attachments/assets/679b77f9-9125-4ae2-8fc1-7228a6373573)">
 </p>
 
 ## ERD 링크
