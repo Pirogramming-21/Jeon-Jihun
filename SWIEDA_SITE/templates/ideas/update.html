@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{%block head %}
+  <title>Idea_update</title>
+{%endblock%}
+
+{%block content%}
+  <form enctype="multipart/form-data"
+    action="{% url 'ideas:update' pk %}"
+    method="post"
+  >
+    {%csrf_token%} {{form.as_p}}
+    <button class="btn btn-primary">SUBMIT</button>
+  </form>
+{%endblock%}

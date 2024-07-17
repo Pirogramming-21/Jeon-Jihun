@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block head%}
+    <title>IDEA LIST</title>
+{% endblock %}
+
+{%block content%}
+    <div class="container my-3">
+        <div class="page-title">
+            <h1>Idea List</h1>
+            <p>나의 아이디어를 기록해 보세요</p>
+        </div>
+        <form id="searchForm" action="{% url 'ideas:main' %}" method="get">
+            <input type="hidden" id="so" name="so" value="{{so}}">
+            <select class="so" name="so">
+                <option value="recent" {% if so == 'recent' %}selected{% endif %}>최신순</option>
+                <option value="title" {% if so == 'title' %}selected{% endif %}>이름순</option>
+                <option value="register" {% if so == 'register' %}selected{% endif %}>등록순</option>
+                <option value="dibs" {% if so == 'dibs' %}selected{% endif %}>찜하기순</option>
+            </select>
+        </form>
+
+        <div class="content-wrapper">
+            {% for idea in ideas %}
+            <div class="item">
+              {% if idea.photo.url != null and post.photo.url != '' %}
+                <img src="{{idea.photo.url}}" alt="대체텍스트">
+              {% else %}
+                <img src="{% static 'ideas/image/no_img.png' %}" alt="">
+              {% endif %}
+              <div class="info">
+                <a href="{% url 'ideas:detail' idea.pk%}" class="title">
+                  {{idea.title}}
+                </a>
+                <p class="tool">예상 개발 툴 : {{idea.devtool}}</p>
+                <p class="interest">아이디어 관심도 : 
+                    <button class="decrease-button" data-idea-id="{{idea.id}}">-
+                    </button>
+                    <span class="interest-value">{{idea.interest}}</span>
+                    <button class="increase-button" data-idea-id="{{idea.id}}">+
+                    </button>
+                </p>
+              </div>
+            </div>
+            {% endfor %}
+
+    </div>
+{%endblock%}
+
+{% block script %}
+{% comment %} <script type='text/javascript'>
+    $(document).ready(function(){
+        $(".so").on('change', function() {
+            $("#so").val($(this).val());
+            $("#searchForm").submit();
+        });
+    });
+</script> {% endcomment %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.decrease-button, .increase-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const ideaId = this.dataset.ideaId; 
+                const action = this.classList.contains('increase-button') ? 'increase' : 'decrease'; 
+
+                fetch(`interest/${ideaId}/${action}/`,{
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': getCookie('csrftoken'),
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const interestValue = this.parentElement.querySelector('.interest-value');
+                    interestValue.textContent = data.interest;
+                });
+            
+            });
+        });
+    });
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+</script>
+{% endblock %}

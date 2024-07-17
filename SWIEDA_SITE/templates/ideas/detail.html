@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <h1 style="color: green; font-size: 40px">{{idea.title}}</h1>
+  {% if idea.photo.url != '' %}
+    <img src="{{idea.photo.url}}" alt="툴 이미지" />
+  {% else %}
+    <img src="{% static 'ideas/image/no_img.png' %}" alt="대체 텍스트" />
+  {% endif %}
+  <p>1. 아이디어 관심도</p>
+  <p>{{idea.interest}}</p>
+  <p>2. 예상 개발 툴</p>
+  <p>{{idea.devtool}}</p>
+  <p>3. 아이디어 설명</p>
+  <p>{{idea.content}}</p>
+
+  <hr />
+  <form id="next_work" action="{% url 'ideas:delete' idea.pk %}" method="POST">
+    {%csrf_token%}
+    <button type="submit" class="btn btn-danger">삭제</button>
+    <a href="{% url 'ideas:main' %}" class="btn btn-primary">목록</a>
+    <a href="{% url 'ideas:update' idea.pk %}" class="btn btn-primary">수정</a>
+  </form>
+{% endblock content %}

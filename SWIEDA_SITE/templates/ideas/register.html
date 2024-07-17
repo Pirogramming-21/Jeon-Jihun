@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{%block head%}
+  <title>idea_register</title>
+{% endblock %}
+
+{%block content%}
+  <form enctype="multipart/form-data"
+    action="{% url 'ideas:register' %}"
+    method="post"
+  >
+    {%csrf_token%} {{form.as_p}}
+    <button class="btn btn-success">SUBMIT</button>
+  </form>
+{%endblock%}

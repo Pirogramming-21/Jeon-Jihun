@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1 style="color: green; font-size: 40px">{{tool.name}}</h1>
+    <p>{{tool.kind}}</p>
+    <p>{{tool.tool_content}}</p>
+
+    <p>만들 수 있는 SW 목록</p>
+    {% comment %} {% for rel_idea in related_ideas %}
+        <a href="{% url 'ideas:detail' rel_idea.pk %}" class="btn btn-success">
+        {{rel_idea.title}}
+        </a>
+    {% endfor %} {% endcomment %}
+    <hr />
+    <form id="next_work" action="{% url 'tools:delete' tool.pk %}" method="POST">
+        {%csrf_token%}
+        <button type="submit" class="btn btn-danger">삭제</button>
+        <a href="{% url 'tools:list' %}" class="btn btn-primary">목록</a>
+        <a href="{% url 'tools:update' tool.pk %}" class="btn btn-primary">수정</a>
+    </form>
+{% endblock content %}
