@@ -7,16 +7,16 @@ from django.shortcuts import get_object_or_404
 
 # Create your views here.
 def main(req):
-    so = req.GET.get('so', 'recent')
+    so = req.GET.get('so', '')
 
     if so == 'title':
-        ideas = Idea.objects.order_by('title','-updated_date')
+        ideas = Idea.objects.all().order_by('title','-updated_date')
     elif so == 'register':
-        ideas = Idea.objects.order_by('-created_date')
+        ideas = Idea.objects.all().order_by('-created_date')
     elif so == 'dibs':
-        ideas = Idea.objects.order_by('-dibs','-updated_date')
+        ideas = Idea.objects.all().order_by('-dibs','-updated_date')
     else:
-        ideas = Idea.objects.order_by('-updated_date')
+        ideas = Idea.objects.all().order_by('-updated_date')
     ctx = {'ideas' : ideas, 'so': so}
     return render(req, 'ideas/list.html', ctx)
 

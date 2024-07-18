@@ -12,8 +12,8 @@
             <p>나의 아이디어를 기록해 보세요</p>
         </div>
         <form id="searchForm" action="{% url 'ideas:main' %}" method="get">
-            <input type="hidden" id="so" name="so" value="{{so}}">
-            <select class="so" name="so">
+            {% comment %} <input type="hidden" class="so" name="so" value="{{so}}"> {% endcomment %}
+            <select id="sorting" onchange="sortidea()">
                 <option value="recent" {% if so == 'recent' %}selected{% endif %}>최신순</option>
                 <option value="title" {% if so == 'title' %}selected{% endif %}>이름순</option>
                 <option value="register" {% if so == 'register' %}selected{% endif %}>등록순</option>
@@ -47,52 +47,3 @@
 
     </div>
 {%endblock%}
-
-{% block script %}
-{% comment %} <script type='text/javascript'>
-    $(document).ready(function(){
-        $(".so").on('change', function() {
-            $("#so").val($(this).val());
-            $("#searchForm").submit();
-        });
-    });
-</script> {% endcomment %}
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.decrease-button, .increase-button').forEach(button => {
-            button.addEventListener('click', function() {
-                const ideaId = this.dataset.ideaId; 
-                const action = this.classList.contains('increase-button') ? 'increase' : 'decrease'; 
-
-                fetch(`interest/${ideaId}/${action}/`,{
-                    method: 'POST',
-                    headers: {
-                        'X-CSRFToken': getCookie('csrftoken'),
-                    },
-                })
-                .then(response => response.json())
-                .then(data => {
-                    const interestValue = this.parentElement.querySelector('.interest-value');
-                    interestValue.textContent = data.interest;
-                });
-            
-            });
-        });
-    });
-
-    function getCookie(name) {
-        let cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            const cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                const cookie = cookies[i].trim();
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
-            }
-        }
-        return cookieValue;
-    }
-</script>
-{% endblock %}
