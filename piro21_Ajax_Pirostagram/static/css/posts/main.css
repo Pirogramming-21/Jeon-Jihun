@@ -1,0 +1,81 @@
+body {
+    background-color: #fafafa;
+    font-family: Arial, sans-serif;
+}
+
+.navbar-brand {
+    font-family: 'Pacifico', cursive;
+}
+
+.sidebar {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0;
+    z-index: 1000;
+    border-right: 1px solid #e7e7e7;
+}
+
+.sidebar-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    padding-top: 20px;
+}
+
+.sidebar .nav-link {
+    color: #333;
+    font-weight: 500;
+}
+
+.sidebar .nav-link.active {
+    color: #000;
+}
+
+.story-bar {
+    background-color: #fff;
+    border: 1px solid #dbdbdb;
+    border-radius: 10px;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px;
+}
+
+.story {
+    text-align: center;
+}
+
+.card-header {
+    background-color: #fff;
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.card-footer {
+    background-color: #fff;
+    border-top: 1px solid #dbdbdb;
+}
+
+.sidebar-right {
+    top: 0;
+    bottom: 0;
+    right: 0;
+    padding: 0;
+    z-index: 1000;
+    border-left: 1px solid #e7e7e7;
+    position: fixed;
+    height: 100vh;
+}
+
+.profile img {
+    width: 50px;
+    height: 50px;
+}
+
+.suggestion img {
+    width: 30px;
+    height: 30px;
+}
+
+.comment {
+    font-size: 0.9em;
+}

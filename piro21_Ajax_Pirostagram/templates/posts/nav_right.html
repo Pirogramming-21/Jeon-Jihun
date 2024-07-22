@@ -1,0 +1,22 @@
+{% block content %}
+<aside class="col-md-3 d-none d-md-block bg-light sidebar-right">
+    <div class="profile d-flex align-items-center p-3">
+        <img src="https://via.placeholder.com/50" class="rounded-circle mr-3" alt="Profile picture">
+        <div>
+            <div class="font-weight-bold">{{ post.id }}</div>
+            <div class="text-muted">전지훈</div>
+        </div>
+    </div>
+    <div class="suggestions p-3">
+        <h5 class="card-title">회원님을 위한 추천</h5>
+        <div class="suggestion d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+                <img src="https://via.placeholder.com/30" class="rounded-circle mr-2" alt="suggested user">
+                <div class="font-weight-bold">imhoon_137</div>
+            </div>
+            <button class="btn btn-sm btn-primary">팔로우</button>
+        </div>
+        <!-- Add more suggestions here -->
+    </div>
+</aside>
+{% endblock %}
