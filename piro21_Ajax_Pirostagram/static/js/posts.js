@@ -23,6 +23,7 @@ const handleLikeClick = (buttonId) => {
     const csrftoken = getCookie('csrftoken');
     // like-button-{{ post.id }}
     const postId = buttonId.split("-").pop();
+    const likesCountElement = document.getElementById(`likes-count-${buttonId.split("-").pop()}`);
     const url = postId + "/post_like"
 
     const xhr = new XMLHttpRequest();
@@ -40,6 +41,7 @@ const handleLikeClick = (buttonId) => {
                 } else {
                     likeIcon.classList.replace("fa-heart", "fa-heart-o");
                 }
+                likesCountElement.textContent = `좋아요 ${data.likes_count}개`;
             }
         }
     };

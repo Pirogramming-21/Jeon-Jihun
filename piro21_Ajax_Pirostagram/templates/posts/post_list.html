@@ -45,13 +45,13 @@
                 <i class="far fa-bookmark fa-lg"></i>
             </div>
             <div class="mt-2">
-                <strong>좋아요 88개</strong>
+                <strong id="likes-count-{{ post.id }}">좋아요 {{post.post_likes.count}}개</strong>
             </div>
             <div class="mt-1">
                 <strong>{{post.author}}</strong> {{post.caption}}
             </div>
             <div class="mt-1 text-muted" style="font-size: 0.9em;">
-                댓글 17개 모두 보기
+                댓글 {{post.comment_post.count}}개 모두 보기
             </div>
             <div class="post-comments mt-2">
                 {% for comment in post.comment_post.all %}
